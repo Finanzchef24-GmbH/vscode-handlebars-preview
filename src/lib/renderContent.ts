@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import Handlebars from "./handlebars";
 
 export default (templateSource, dataSource): string => {
     if (!templateSource) {
