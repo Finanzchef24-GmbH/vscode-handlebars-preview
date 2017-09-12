@@ -46,6 +46,8 @@ function watchPartials(partialsGlob) {
     });
 }
 
-findPartials(partialsGlob).then(watchPartials)
+function getHandlebarsInstance() {
+    return findPartials(partialsGlob).then(watchPartials).then(() => handlebars);
+}
 
-export default handlebars;
+export default getHandlebarsInstance;

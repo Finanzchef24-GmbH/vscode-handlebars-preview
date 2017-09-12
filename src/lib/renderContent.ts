@@ -1,13 +1,14 @@
-import Handlebars from "./handlebars";
+import getHandlebarsInstance from "./handlebars";
 
-export default (templateSource, dataSource): string => {
+export default async (templateSource, dataSource): Promise<string> => {
     if (!templateSource) {
         return "<body>Select document to render</body>";
     }
 
-    try {   
+    try {
+        const handlebars = await getHandlebarsInstance();
         let data = JSON.parse(dataSource || "{}");
-        let template = Handlebars.compile(templateSource);
+        let template = handlebars.compile(templateSource);
         return template(data);
     } catch (ex) {
         return `
