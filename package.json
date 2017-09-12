@@ -38,15 +38,15 @@
       "type": "object",
       "title": "Handlebars Preview Configuration",
       "properties": {
-        "handlebarsPreview.partialsDirectory": {
+        "handlebarsPreview.partialsGlob": {
           "type": "string",
-          "description": "Directory with Partials"
+          "description": "Glob describing the directory with partials"
         },
-        "handlebarsPreview.helpersFile": {
+        "handlebarsPreview.helpersGlob": {
           "type": "string",
-          "description": "File with handlebars helper"
+          "description": "Glob describing the files with handlebars helper"
         },
-        "handlebarsPreview.dataFile": {
+        "handlebarsPreview.dataGlob": {
           "type": "string",
           "description": "JSON File with data for handlebars template"
         }
@@ -75,10 +75,6 @@
     "vscode": "^1.0.0"
   },
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "chokidar": "^1.7.0",
-    "glob": "^7.1.2",
-    "handlebars": "^4.0.6",
-    "lodash": "^4.17.4"
+    "handlebars": "^4.0.6"
   }
 }

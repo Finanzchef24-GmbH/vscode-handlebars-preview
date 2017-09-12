@@ -1,14 +1,13 @@
 import {
-    workspace, window, commands, 
+    workspace, window,
     TextDocumentContentProvider,
-    Event, Uri, EventEmitter, Disposable 
+    Event, Uri, EventEmitter
 } from "vscode";
 import { dirname } from "path";
 import { existsSync, readFileSync } from "fs";
 import renderContent from "./renderContent";
 
 const resolveFileOrText = fileName => {
-    console.log(fileName, workspace.textDocuments.map(x => x.fileName));
     let document = workspace.textDocuments.find(e => e.fileName === fileName);
 
     if (document) {
@@ -27,7 +26,7 @@ export default class HtmlDocumentContentProvider implements TextDocumentContentP
     constructor() {
     }
 
-    public provideTextDocumentContent(uri: Uri): string {
+    public async provideTextDocumentContent(uri: Uri): Promise<string> {
         let templateSource;
         let dataSource;
         
@@ -39,11 +38,14 @@ export default class HtmlDocumentContentProvider implements TextDocumentContentP
            
             if (currentFileName === this._fileName
                  || currentFileName === this._dataFileName) {
-                // User swtiched editor to context, just use stored on
+                // User switched editor to context, just use stored on
                 fileName = this._fileName;
                 dataFileName = this._dataFileName;
             } else {
-                dataFileName = workspace.getConfiguration('handlebarsPreview').get('dataFile');
+                let dataFileGlob = workspace.getConfiguration('handlebarsPreview').dataGlob;
+
+                dataFileName = await workspace.findFiles(dataFileGlob, null, 1)
+                    .then(files => files && files[0] && files[0].fsPath);
                 fileName = currentFileName;
             }
 
