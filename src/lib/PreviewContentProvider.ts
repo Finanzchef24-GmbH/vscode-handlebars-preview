@@ -43,7 +43,7 @@ export default class HtmlDocumentContentProvider implements TextDocumentContentP
                 fileName = this._fileName;
                 dataFileName = this._dataFileName;
             } else {
-                dataFileName = currentFileName + '.json';
+                dataFileName = workspace.getConfiguration('handlebarsPreview').get('dataFile');
                 fileName = currentFileName;
             }
 
