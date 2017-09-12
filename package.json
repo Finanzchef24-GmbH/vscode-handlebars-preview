@@ -34,6 +34,12 @@
         "title": "Handlebars: Open Preview"
       }
     ],
+    "menus": {
+      "explorer/context": [{
+        "when": "resourceLangId == handlebars",
+        "command": "handlebarsPreview.preview"
+      }]
+    },
     "configuration": {
       "type": "object",
       "title": "Handlebars Preview Configuration",
@@ -55,7 +61,7 @@
     "keybindings": [
       {
         "command": "handlebarsPreview.preview",
-        "key": "ctrl+p h",
+        "key": "ctrl+h",
         "when": "!terminalFocus"
       }
     ]
