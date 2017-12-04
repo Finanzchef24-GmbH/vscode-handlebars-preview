@@ -5,7 +5,7 @@
   "version": "1.2.0",
   "publisher": "chaliy",
   "engines": {
-    "vscode": "^1.5.0"
+    "vscode": "^1.13.0"
   },
   "icon": "icon.png",
   "repository": {
@@ -24,21 +24,35 @@
     "Live Preview"
   ],
   "activationEvents": [
-    "onCommand:handlebarsPreview.preview"
+    "onView:hbsOutline"
   ],
   "main": "./out/src/extension",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "hbsOutline",
+          "name": "Handlebars Data"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "handlebarsPreview.preview",
         "title": "Handlebars: Open Preview"
+      },
+      {
+        "command": "extension.changeValue",
+        "title": "Change Value"
       }
     ],
     "menus": {
-      "explorer/context": [{
-        "when": "resourceLangId == handlebars",
-        "command": "handlebarsPreview.preview"
-      }]
+      "explorer/context": [
+        {
+          "when": "resourceLangId == handlebars",
+          "command": "handlebarsPreview.preview"
+        }
+      ]
     },
     "configuration": {
       "type": "object",
@@ -77,12 +91,15 @@
     "@types/node": "^6.0.40",
     "copyfiles": "^1.2.0",
     "mocha": "^2.3.3",
-    "typescript": "^2.0.3",
+    "typescript": "^2.1.4",
     "vscode": "^1.0.0"
   },
   "dependencies": {
-    "handlebars": "^4.0.6"
     "barhandles": "0.5.3",
     "bluebird": "3.5.1",
+    "glob": "7.1.2",
+    "handlebars": "4.0.6",
+    "jsonc-parser": "1.0.0",
+    "traverse": "0.6.6"
   }
 }
