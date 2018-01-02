@@ -154,6 +154,13 @@ export default class HbsOutlineProvider implements vscode.TreeDataProvider<strin
 			}
 			treeItem.iconPath = this.getIcon(valueNode);
 			treeItem.contextValue = valueNode.type;
+
+			if (!valueNode.parent.parent.parent) {
+				treeItem.collapsibleState = TreeItemCollapsibleState.Expanded;
+			} else {
+				treeItem.collapsibleState = TreeItemCollapsibleState.Collapsed;
+			}
+
 			return treeItem;
 		}
 		return null;
