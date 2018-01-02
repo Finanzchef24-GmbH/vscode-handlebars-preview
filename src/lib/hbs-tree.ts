@@ -136,14 +136,6 @@ export default class HbsOutlineProvider implements vscode.TreeDataProvider<strin
 		return offsets;
 	}
 
-	private toArrayValueNode(node: json.Node): json.Node[] {
-		if (node.type === 'array' || node.type === 'object') {
-			return node.children;
-		}
-		node['arrayValue'] = true;
-		return [node];
-	}
-
 	getTreeItem(offset: string): vscode.TreeItem {
 		const path = json.getLocation(this.text, parseInt(offset)).path
 		const valueNode = json.findNodeAtLocation(this.tree, path);
@@ -213,13 +205,6 @@ export default class HbsOutlineProvider implements vscode.TreeDataProvider<strin
 			}
 		}
 		return null;
-	}
-
-	private getNodeType(node: json.Node): json.NodeType {
-		if (node.parent.type === 'array') {
-			return node.type;
-		}
-		return node.children[1].type;
 	}
 
 	private getLabel(node: json.Node): string {
