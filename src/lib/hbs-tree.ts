@@ -126,7 +126,7 @@ export default class HbsOutlineProvider implements vscode.TreeDataProvider<strin
 
 	private getChildrenOffsets(node: json.Node): string[] {
 		const offsets = [];
-		for (const child of node.children) {
+		for (const child of node.children || []) {
 			const childPath = json.getLocation(this.text, child.offset).path
 			const childNode = json.findNodeAtLocation(this.tree, childPath);
 			if (childNode) {

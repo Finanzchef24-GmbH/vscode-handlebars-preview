@@ -11,7 +11,7 @@ async function parseAll(workspaceRoot: string) : Promise<any> {
         return file.match(/\.hbs$/) || file.match(/\.handlebars$/)
     });
     const templates = await bluebird.map(files, (file) => fsAsync.readFileAsync(file, {encoding: 'utf-8'}));
-    const schema = barhandles.extractSchema(templates.join(''));
+    const schema = barhandles.extractSchema(templates.join('\n'));
 
     return schema;
 }
