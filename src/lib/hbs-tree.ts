@@ -40,7 +40,7 @@ export default class HbsOutlineProvider implements vscode.TreeDataProvider<strin
 		let matches = glob.sync(this.dataFileGlob, {cwd: vscode.workspace.rootPath}) 
 		this.dataPath = path.join(vscode.workspace.rootPath, matches[0])
 
-		if (vscode.window.activeTextEditor.document.fileName === this.dataPath) {
+		if (_.get(vscode, 'window.activeTextEditor.document.fileName', null) === this.dataPath) {
 			this.dataDocument = vscode.window.activeTextEditor.document;
 			this.refresh();
 		} else {
@@ -174,8 +174,8 @@ export default class HbsOutlineProvider implements vscode.TreeDataProvider<strin
 	}
 
 	edit(range: vscode.Range) {
-		let dataUri = this.dataDocument.uri;
-		let oldValue = this.dataDocument.getText(range)
+		const dataUri = this.dataDocument.uri;
+		const oldValue = this.dataDocument.getText(range)
 
 		vscode.window.showInputBox({
 			prompt: 'Enter new value',
