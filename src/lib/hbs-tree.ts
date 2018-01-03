@@ -157,6 +157,8 @@ export default class HbsOutlineProvider implements vscode.TreeDataProvider<strin
 
 			if (!valueNode.parent.parent.parent) {
 				treeItem.collapsibleState = TreeItemCollapsibleState.Expanded;
+			} else if (!valueNode.children){
+				treeItem.collapsibleState = TreeItemCollapsibleState.None;
 			} else {
 				treeItem.collapsibleState = TreeItemCollapsibleState.Collapsed;
 			}
