@@ -1,86 +1,105 @@
 {
-  "name": "handlebars-preview",
-  "displayName": "Handlebars Preview",
-  "description": "Live preview for Handlebar templates",
-  "version": "1.2.0",
-  "publisher": "chaliy",
-  "engines": {
-    "vscode": "^1.5.0"
-  },
-  "icon": "icon.png",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chaliy/vscode-handlebars-preview"
-  },
-  "galleryBanner": {
-    "color": "#0F6378",
-    "theme": "dark"
-  },
-  "categories": [
-    "Other"
-  ],
-  "keywords": [
-    "Handlebars",
-    "Live Preview"
-  ],
-  "activationEvents": [
-    "onCommand:handlebarsPreview.preview"
-  ],
-  "main": "./out/src/extension",
-  "contributes": {
-    "commands": [
-      {
-        "command": "handlebarsPreview.preview",
-        "title": "Handlebars: Open Preview"
-      }
-    ],
-    "menus": {
-      "explorer/context": [{
-        "when": "resourceLangId == handlebars",
-        "command": "handlebarsPreview.preview"
-      }]
-    },
-    "configuration": {
-      "type": "object",
-      "title": "Handlebars Preview Configuration",
-      "properties": {
-        "handlebarsPreview.partialsGlob": {
-          "type": "string",
-          "description": "Glob describing the directory with partials"
-        },
-        "handlebarsPreview.helpersGlob": {
-          "type": "string",
-          "description": "Glob describing the files with handlebars helper"
-        },
-        "handlebarsPreview.dataGlob": {
-          "type": "string",
-          "description": "JSON File with data for handlebars template"
-        }
-      }
-    },
-    "keybindings": [
-      {
-        "command": "handlebarsPreview.preview",
-        "key": "ctrl+h",
-        "when": "!terminalFocus"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "copyfiles test/examples/*.* out/ && tsc -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "npm run compile && node ./node_modules/vscode/bin/test"
-  },
-  "devDependencies": {
-    "@types/mocha": "^2.2.32",
-    "@types/node": "^6.0.40",
-    "copyfiles": "^1.2.0",
-    "mocha": "^2.3.3",
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
-  },
-  "dependencies": {
-    "handlebars": "^4.0.6"
-  }
+	"name": "fc24-handlebars",
+	"displayName": "Handlebars Preview",
+	"description": "Live preview for Handlebar templates",
+	"version": "1.2.0",
+	"publisher": "chaliy",
+	"engines": {
+		"vscode": "^1.13.0"
+	},
+	"icon": "icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/chaliy/vscode-handlebars-preview"
+	},
+	"galleryBanner": {
+		"color": "#0F6378",
+		"theme": "dark"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"Handlebars",
+		"Live Preview"
+	],
+	"activationEvents": [
+		"onView:hbsOutline"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"views": {
+			"explorer": [
+				{
+					"id": "hbsOutline",
+					"name": "Handlebars Data"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "handlebarsPreview.preview",
+				"title": "Handlebars: Open Preview"
+			},
+			{
+				"command": "extension.changeValue",
+				"title": "Change Value"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "resourceLangId == handlebars",
+					"command": "handlebarsPreview.preview"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "Handlebars Preview Configuration",
+			"properties": {
+				"handlebarsPreview.partialsGlob": {
+					"type": "string",
+					"description": "Glob describing the directory with partials"
+				},
+				"handlebarsPreview.helpersGlob": {
+					"type": "string",
+					"description": "Glob describing the files with handlebars helper"
+				},
+				"handlebarsPreview.dataGlob": {
+					"type": "string",
+					"description": "JSON File with data for handlebars template"
+				}
+			}
+		},
+		"keybindings": [
+			{
+				"command": "handlebarsPreview.preview",
+				"key": "ctrl+h",
+				"when": "!terminalFocus"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "tsc -p ./",
+		"compile": "copyfiles test/examples/*.* out/ && tsc -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.32",
+		"@types/node": "^6.0.40",
+		"copyfiles": "^1.2.0",
+		"mocha": "^2.3.3",
+		"typescript": "^2.1.4",
+		"vscode": "^1.0.0"
+	},
+	"dependencies": {
+		"barhandles": "0.5.3",
+		"bluebird": "3.5.1",
+		"glob": "7.1.2",
+		"handlebars": "4.0.6",
+		"jsonc-parser": "1.0.0",
+		"traverse": "0.6.6"
+	}
 }
